@@ -6,6 +6,8 @@ use common\models\Program;
 use common\models\Department;
 use common\models\Semester;
 use yii\helpers\ArrayHelper;
+use kartik\widgets\DepDrop;
+
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Student */

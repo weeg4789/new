@@ -14,6 +14,9 @@ return [
         'studented' => [
             'class' => 'frontend\modules\studented\Module',
         ],
+        'companies' => [
+            'class' => 'frontend\modules\companies\Module',
+        ],
     ],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
@@ -49,10 +52,6 @@ return [
             ],
         ],
         */
-
-        'session' => [
-            'name' => 'APPFRONTEND'
-        ],
     ],
     'params' => $params,
 ];

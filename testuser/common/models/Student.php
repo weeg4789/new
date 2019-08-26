@@ -11,7 +11,7 @@ use Yii;
  * @property string $std_code รหัสนักศึกษา
  * @property string $firstname ชื่อ
  * @property string $lastname นามสกุล
- * @property int $phone เบอร์โทรศัพ
+ * @property string $phone เบอร์โทรศัพ
  * @property int $semester_id ปีการศึกษา
  * @property int $program_id โปรแกรมวิชา
  * @property int $department_id สาขาวิชา
@@ -39,9 +39,10 @@ class Student extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'std_code', 'firstname', 'lastname', 'semester_id', 'program_id', 'department_id', 'company_id'], 'required'],
-            [['user_id', 'phone', 'semester_id', 'program_id', 'department_id', 'company_id'], 'integer'],
+            [['user_id', 'semester_id', 'program_id', 'department_id', 'company_id'], 'integer'],
             [['std_code'], 'string', 'max' => 13],
             [['firstname', 'lastname'], 'string', 'max' => 100],
+            [['phone'], 'string', 'max' => 10],
             [['user_id', 'semester_id'], 'unique', 'targetAttribute' => ['user_id', 'semester_id']],
             //[['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::className(), 'targetAttribute' => ['company_id' => 'id']],
             //[['program_id', 'department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Program::className(), 'targetAttribute' => ['program_id' => 'id', 'department_id' => 'department_id']],

@@ -20,17 +20,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <h3 class="box-title"><i class="fa fa-users"></i> <?= Html::encode($this->title) ?></h3>
     </div>
     <div class="box-body">
-    <p>
-        <?= Html::a('เพิ่มนักศึกษา', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
+    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+          
 
             //'user_id',
             [
@@ -101,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
            // 'company.namecompany',
 
            
-            ['class' => 'yii\grid\ActionColumn'],
+           
             
            /* [
             'filter' =>   Html::a('PDF', ['pdf'], ['class' => 'btn btn-success']) 

@@ -58,9 +58,6 @@ return [
                 ],
             ],
        ],
-       'session' => [
-           'name' => 'APPBACKEND'
-       ],
     ],
     'params' => $params,
 ];

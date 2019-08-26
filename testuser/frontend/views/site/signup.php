@@ -6,6 +6,8 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
+use common\models\Student;
 
 $this->title = 'Signup';
 $this->params['breadcrumbs'][] = $this->title;

@@ -8,6 +8,7 @@ use frontend\modules\studented\models\StudentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\User;
 
 /**
  * StudentController implements the CRUD actions for Student model.
@@ -54,6 +55,13 @@ class StudentController extends Controller
     public function actionView($user_id, $semester_id)
     {
         return $this->render('view', [
+            'model' => $this->findModel($user_id, $semester_id),
+        ]);
+    }
+
+    public function actionProfile($user_id, $semester_id)
+    {
+        return $this->render('profile', [
             'model' => $this->findModel($user_id, $semester_id),
         ]);
     }
@@ -127,5 +135,40 @@ class StudentController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionResetpassword($user_id, $semester_id)
+    {
+        $model = $this->findModel($user_id, $semester_id);
+        $user = $model->user;
+        $oldPass = $user->password_hash;
+
+        if ($user->load(Yii::$app->request->post())) {
+
+            if($oldPass!=$user->password_hash){//เปลี่ยนรหัสผ่าน
+                $user->password_hash = Yii::$app->security->generatePasswordHash($user->password_hash);
+            }
+            $user->save();
+               
+            return $this->redirect(['profile', 'user_id' => $model->user_id, 'semester_id' => $model->semester_id]);
+        }
+
+        return $this->render('resetpassword', [
+            'model' => $model,
+            'user' => $user,
+        ]);
+    }
+
+    public function actionUpdatecompany($user_id, $semester_id)
+    {
+        $model = $this->findModel($user_id, $semester_id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['profile', 'user_id' => $model->user_id, 'semester_id' => $model->semester_id]);
+        }
+
+        return $this->render('updatecompany', [
+            'model' => $model,
+        ]);
     }
 }

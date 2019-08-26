@@ -8,7 +8,9 @@ use backend\modules\studented\models\StudentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use common\models\User;
+use common\components\UserRule;
 
 /**
  * StudentController implements the CRUD actions for Student model.
@@ -27,6 +29,42 @@ class StudentController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            
+            'access' => [
+                'class' => AccessControl::className(),
+                // We will override the default rule config with the new AccessRule class
+                'ruleConfig' => [
+                    'class' => UserRule::className(),
+                ],
+                'only' => ['index','create', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        // Allow users,  and admins to create
+                        'roles' => [
+                            User::ROLE_USER,
+                            User::ROLE_ADMIN
+                        ],
+                    ],
+                    [
+                        'actions' => ['update','create'],
+                        'allow' => true,
+                        // Allow  and admins to update
+                        'roles' => [
+                            User::ROLE_ADMIN
+                        ],
+                    ],
+                    [
+                        'actions' => ['delete'],
+                        'allow' => true,
+                        // Allow admins to delete
+                        'roles' => [
+                            User::ROLE_ADMIN
+                        ],
+                    ],
+                ],
+            ],    
         ];
     }
 
