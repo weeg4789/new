@@ -68,6 +68,28 @@ class StudentController extends Controller
         ];
     }
 
+
+    public function actionProgram() {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $dep_id = $parents[0];
+                $out = Program::getProgramlist($dep_id); 
+                // the getSubCatList function will query the database based on the
+                // cat_id and return an array like below:
+                // [
+                //    ['id'=>'<sub-cat-id-1>', 'name'=>'<sub-cat-name1>'],
+                //    ['id'=>'<sub-cat_id_2>', 'name'=>'<sub-cat-name2>']
+                // ]
+                return Json::encode(['output'=>$out, 'selected'=>'']);
+            }
+        }
+        return Json::encode(['output'=>$out, 'selected'=>'']);
+    }
+
+
     /**
      * Lists all Student models.
      * @return mixed

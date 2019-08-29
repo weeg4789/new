@@ -7,6 +7,7 @@ use common\models\Department;
 use common\models\Company;
 use common\models\Program;
 use common\models\Student;
+use common\models\Semester;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\modules\studented\models\StudentSearch */
@@ -28,16 +29,26 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
           
-
+            
             //'user_id',
+
             [
+                'attribute' => 'std_code',
+                'value' => function($model){
+                    return $model->semester->semester;
+                },
+                'filter' => Html::activeDropDownList($searchModel, 'semester_id',
+                 ArrayHelper::map(Semester::find()->all(), 'id', 'semester'),
+                        ['class' => 'form-control']),
+
+                
                 'label' => 'รหัสนักศึกษา',
                 'format' => 'raw',
                 'value' => function ($user) {
                               return Html::a($user->std_code, ['/studented/student/view', 'user_id' => $user->user_id,
                               'semester_id'=>$user->semester_id ]);
                           },
-         ],
+            ],
            // 'std_code',
            //'firstname',
            //'lastname',
@@ -62,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ['class' => 'form-control']),
             ],
 
-            [
+        /*     [
                 'attribute' => 'company_id',
                 'value' => function($model){
                     return $model->company->namecompany;
@@ -71,8 +82,11 @@ $this->params['breadcrumbs'][] = $this->title;
                  ArrayHelper::map(Company::find()->all(), 'id', 'namecompany'),
                         ['class' => 'form-control']),
             ],
+       */
 
-            [
+       'company.namecompany',
+         
+       [
                 'label' => 'เอกสารส่งตัว',
                 'format' => 'raw',
                 'value' => function ($user) {

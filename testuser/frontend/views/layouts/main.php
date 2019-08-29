@@ -36,14 +36,13 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'ข้อมูลนักศึกษา', 'url' => ['/studented/student']],
+        ['label' => 'ข้อมูลการสหกิจ', 'url' => ['/companies/company']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
-        $menuItems[] = ['label' => 'ข้อมูลการสหกิจ', 'url' => ['/companies/company']];
         $menuItems[] = ['label' => 'ข้อมูลส่วนตัว', 'url' => ['/studented/student/profile', 'user_id' => Yii::$app->user->id,
         'semester_id'=>Yii::$app->user->identity->student->semester_id]];
         $menuItems[] = '<li>'

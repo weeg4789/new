@@ -7,6 +7,7 @@ use common\models\Department;
 use common\models\Semester;
 use yii\helpers\ArrayHelper;
 use kartik\widgets\DepDrop;
+use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
@@ -36,9 +37,17 @@ use kartik\widgets\DepDrop;
 
     <?= $form->field($model, 'semester_id')->dropDownList(ArrayHelper::map(Semester::find()->all(),'id','semester')) ?>
 
-    <?= $form->field($model, 'department_id')->dropDownList(ArrayHelper::map(Department::find()->all(),'id','name')) ?>
- 
-    <?= $form->field($model, 'program_id')->dropDownList(ArrayHelper::map(Program::find()->all(),'id','name')) ?>
+    <?= $form->field($model, 'department_id')->dropDownList(Department::getDep(),
+    ['prompt' => 'Select...','id' => 'dep-id']) ?>
+
+    <?= $form->field($model, 'program_id')->widget(DepDrop::classname(), [
+    'options'=>['prompt' => 'Select...'],
+    'pluginOptions'=>[
+        'depends'=>['dep-id'],
+        'placeholder'=>'Select...',
+        'url'=>Url::to(['common/program'])
+     ]
+    ]);?>
 
     <?= $form->field($model, 'company_id')->textInput() ?>
 

@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ['class' => 'form-control']),
             ],
 
-            [
+            /*[
                 'attribute' => 'company_id',
                 'value' => function($model){
                     return $model->company->namecompany;
@@ -73,7 +73,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => Html::activeDropDownList($searchModel, 'company_id',
                  ArrayHelper::map(Company::find()->all(), 'id', 'namecompany'),
                         ['class' => 'form-control']),
-            ],
+            ],*/
+            'company.namecompany',
 
             [
                 'label' => 'เอกสารส่งตัว',
@@ -98,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
                       return Html::a('พิมพ์', ['/admin/region/view', 'id' => $user->std_code]);
                   },
               ],
-           // 'company.namecompany',
+            
 
            
             ['class' => 'yii\grid\ActionColumn'],

@@ -73,4 +73,14 @@ class Program extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Teacher::className(), ['program_id' => 'id', 'department_id' => 'department_id']);
     }
+
+    public static function getProgramlist($dep_id)
+    {
+        $programs = self::find()
+        ->select(['id','name'])
+        ->where(['department_id' => $dep_id])
+        ->asArray()
+        ->all();
+        return $programs;
+    }
 }

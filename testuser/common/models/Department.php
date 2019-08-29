@@ -51,4 +51,9 @@ class Department extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Program::className(), ['department_id' => 'id']);
     }
+
+    public static function getDep()
+    {
+        return self::find()->select(['name','id'])->indexBy('id')->column();
+    }
 }

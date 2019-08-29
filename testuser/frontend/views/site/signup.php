@@ -12,13 +12,34 @@ use common\models\Student;
 $this->title = 'Signup';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to signup:</p>
+<style>
+.header_signup {
+  background-color: #85C1E9;
+  margin:0px;
+  padding: 20px;
+  text-align: center;
+}
+.signup_form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  width: 40%;
+  border: 1px solid #85C1E9;
+}
 
-    <div class="row">
-        <div class="col-lg-5">
+.input_signup {
+  padding: 20px;
+  width: 80%;
+}
+</style>
+
+<center>
+<div class="signup_form">
+    <h2 class="header_signup"><?= Html::encode($this->title) ?></h2>
+
+    <div class="row input_signup" >
+    <p>โปรดกรอก username เป็นรหัสนักศึกษา</p>
+        <div class="col-lg-12">
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
                 <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
@@ -35,3 +56,4 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+</center>
