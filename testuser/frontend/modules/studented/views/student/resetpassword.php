@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = 'แก้ไขรหัสผ่าน';
 
 <div class="student-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(); ?>  
 
     <?= $form->field($user, 'password_hash')->textInput() ?>
 

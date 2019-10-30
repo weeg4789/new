@@ -29,6 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'panel'=>[
+            'before'=>' '
+            ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -40,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                               return Html::a($user->std_code, ['/studented/student/view', 'user_id' => $user->user_id,
                               'semester_id'=>$user->semester_id ]);
                           },
-         ],
+             ],
            // 'std_code',
            //'firstname',
            //'lastname',
